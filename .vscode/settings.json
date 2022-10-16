@@ -11,5 +11,13 @@
         "**/.project": true,
         "**/.settings": true,
         "**/.factorypath": true
-    }
+    },
+    "cSpell.words": [
+        "cepstral",
+        "Convolutional",
+        "FCNN",
+        "Libri",
+        "MFCC",
+        "STFT"
+    ]
 }
