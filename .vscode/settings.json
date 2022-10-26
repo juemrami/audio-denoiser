@@ -17,6 +17,7 @@
         "Convolutional",
         "FCNN",
         "Libri",
+        "librosa",
         "MFCC",
         "STFT"
     ]
