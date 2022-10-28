@@ -2,10 +2,14 @@
 Currently using the following datasets:
 - [LibriSpeech ASR corpus](http://www.openslr.org/12).
     - currently only using the `dev-clean` dataset.
-
+- [NOIZEUS](https://ecs.utdallas.edu/loizou/speech/noizeus/)
+- [UrbanSound8K](https://urbansounddataset.weebly.com/download-urbansound8k.html) for noise samples
+- [Noisy speech database for training speech enhancement algorithms and TTS models](https://datashare.ed.ac.uk/handle/10283/2791)
+    - think im using the clean only
+- 
 Look into:
 - [VTCK]() for a higher fidelity dataset.
-- [UrbanSound8K] for noise samples
+- [QUT-NOISE](https://research.qut.edu.au/saivt/databases/qut-noise-databases-and-protocols/)
 
 General Notes:
 - convolutions
@@ -52,6 +56,21 @@ General Notes:
 - direct convoltiuion is more operations than FFT
 - only FIR filters can be used in FFT domain
 
+- 0 padding in the time domain allows you to shift a convolution operation back some samples so that the convolution has some dummy "past data" for the output points its producing and the end of a convolution signal lines up with the start of the signal to be convoluted.
+    - this makes the convolution causal since each point now only requires on data that has been seen.
+
+- 0 padding in the Fourier Transform is usually done at the END of a signal but it is used to increase the frequency resolution
+
+- better temporal resolution would be preffered for the VAD segments, but to pick out frequencies to filter durring speech youd want better frequency resolution,
+
+- “The STFT X(n, ω) can be interpreted in two distinct ways, depending on how we treat the time (n) and frequency (ω) variables. If, for instance, we assume that n is fixed but ω varies, then X(n, ω) can be viewed as the Fourier transform of a windowed sequence. If we assume that ω is fixed and the time index n varies, a filtering interpretation emerges” ([Loizou, p. 32](zotero://select/library/items/IBKAK3L2)) ([pdf](zotero://open-pdf/library/items/YVIX94UY?page=60&annotation=UDW4U9QA))
+
+-The a priori SNR is the ratio of the power of the clean signal and of the noise power. The a posteriori SNR is the ratio of the squared magnitude of the observed noisy signal and the noise power. Both SNRs are computed for each frequency bin
+- Turns out that convolution and correlation are closely related. For real signals (and finite energy signals) [read more](https://dsp.stackexchange.com/questions/55388/for-complex-values-why-use-complex-conjugate-in-convolution)
+
+- https://dsp.stackexchange.com/questions/37059/are-there-any-realtime-voice-activity-detection-vad-implementations-available
+
+
 **Weiner Filtering**
 Filter H is the ratio of the (power spectrum of the clean signal) / (power spectrum of the clean signal + power spectrum of the distortion noise).
 H is applied to the noisy signal in the frequency domain to get the clean signal.
@@ -64,6 +83,9 @@ the problem with a wiener filter is that it kills off signals along with the noi
 https://vocal.com/noise-reduction/the-simple-theory-of-noise-reduction-wiener-filtering/
 
 “The Wiener filter gives the MMSE estimate of the short-time Fourier transform (STFT) whereas the spectral subtraction obtains the MMSE estimate of the short-time spectral magnitude without changing the phase [2-3, 6-8]” ([Upadhyay and Jaiswal, 2016, p. 26](zotero://select/library/items/GNIB4ICH)) ([pdf](zotero://open-pdf/library/items/JRZN8Y3D?page=5&annotation=WRX8RXH7))
+
+“Thus, the Wiener filter attenuates each frequency component in proportion to the estimated SNR (ξk) of that frequency.” ([Loizou, p. 147](zotero://select/library/items/IBKAK3L2)) ([pdf](zotero://open-pdf/library/items/YVIX94UY?page=175&annotation=MJBZLXG3))
+
 **Adaptive Weiner Filtering**
 - attenuates each frequency component by a certain amount depending on the power of the noise at the frequency.
     - if the power of the noise  estimate is 0 then the gain is 1.
