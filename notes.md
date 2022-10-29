@@ -96,6 +96,9 @@ https://vocal.com/noise-reduction/the-simple-theory-of-noise-reduction-wiener-fi
 
 # Background
 
+“This binary function is often called the binary mask and in ideal conditions (where there is a priori knowledge of the clean and masker signals), it is called the ideal binary mask” ([Loizou, p. 619](zotero://select/library/items/IBKAK3L2)) ([pdf](zotero://open-pdf/library/items/YVIX94UY?page=647&annotation=ZJUMZY66))
+
+
 ## Timeline
 ### 2016
 - [Single Channel Speech Enhancement: using Wiener Filtering with Recursive Noise Estimation](https://www.sciencedirect.com/science/article/pii/S1877050916300758) | 01/2016
