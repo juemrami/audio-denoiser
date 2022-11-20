@@ -12,6 +12,7 @@
         "**/.settings": true,
         "**/.factorypath": true
     },
+    "jupyter.notebookFileRoot": "${workspaceFolder}",
     "cSpell.words": [
         "cepstral",
         "Convolutional",
