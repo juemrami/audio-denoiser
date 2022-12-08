@@ -2,3 +2,4 @@
 /data/**/dev-clean
 data/X_69_200.npy
 data/Y_69_200.npy
+data/*.npy

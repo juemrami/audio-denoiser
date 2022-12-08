@@ -15,11 +15,24 @@
     "jupyter.notebookFileRoot": "${workspaceFolder}",
     "cSpell.words": [
         "cepstral",
+        "cnnhistory",
         "Convolutional",
+        "crossentropy",
+        "dtype",
         "FCNN",
+        "keepdims",
+        "keras",
         "Libri",
         "librosa",
+        "matplotlib",
         "MFCC",
-        "STFT"
+        "newshape",
+        "nfft",
+        "pyplot",
+        "relu",
+        "sklearn",
+        "STFT",
+        "xlabel",
+        "ylabel"
     ]
 }
