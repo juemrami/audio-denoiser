@@ -3,3 +3,7 @@
 data/X_69_200.npy
 data/Y_69_200.npy
 data/*.npy
+/dataset
+/dataset_zip
+/*_tmp
+/chime_home
