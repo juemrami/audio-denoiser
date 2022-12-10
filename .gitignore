@@ -7,3 +7,6 @@ data/*.npy
 /dataset_zip
 /*_tmp
 /chime_home
+input_ml_denoised.wav
+input_ss_denoised.wav
+input_wf_denoised.wav
