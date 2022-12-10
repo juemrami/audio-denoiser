@@ -74,13 +74,13 @@ def WienerFilter(filename, sr=16000, n_fft=512, hop_rate=0.5, vad_db=5, gamma=1.
         signal = librosa.istft(X_out, hop_length=hop, n_fft=n_fft)
         outfile = filename.split('.')[0] + '_wf_denoised.wav'
         sf.write(outfile, signal, sr)
-def SpectralSubtraction(filename, sr=16000, n_fft=512, hop_rate=0.5, noise_thresh=2, gamma=1.0, G=1):
+def SpectralSubtraction(filename, sr=16000, n_fft=512, hop_rate=0.5, noise_thresh=5, gamma=1.0, G=1):
     hop = int(hop_rate*n_fft)# hop size in samples
     x, sr = librosa.load(filename, sr=16000)
     X = librosa.stft(x, n_fft=n_fft, hop_length=hop)
     
     # noise estimate vector
-    noise_mu = np.zeros((n_fft//2+1))
+    noise_mu = np.ones((n_fft//2+1))
     
     # initialize various variables
     img = 1j

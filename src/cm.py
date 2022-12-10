@@ -1,7 +1,9 @@
 import argparse
 import os
+print('Clean Machine Stating Up...')
 import numpy as np
 from traditional import WienerFilter, SpectralSubtraction
+from infer import DeepDenoise
 
 # create the parser
 parser = argparse.ArgumentParser()
@@ -13,9 +15,9 @@ parser.add_argument('-t', type=str, help=' Algorithm Type (SS, WF, or ML) for Sp
 args = parser.parse_args()
 
 file_name = args.f
-denoise_type = (args.t)
+denoise_type : str = (args.t) 
 denoise_name = ''
-outfile = file_name.split('.')[0] + '_denoised.wav'
+outfile = file_name.split('.')[0] + '_' +denoise_type.lower()+'_denoised.wav'
 if  denoise_type == 'SS':
     denoise_name = 'Spectral Subtraction'
 elif denoise_type == 'WF':
@@ -29,7 +31,6 @@ else:
 if not file_name:
     print("Please provide a file name")
     exit()
-print('Clean Machine Stating Up...')
 print("Input File: ", file_name)
 print("Selected: ", denoise_name)
 
@@ -37,8 +38,8 @@ if denoise_type == 'WF':
     try:
         WienerFilter(file_name)
     except Exception as e:
+        print("Error: %d failed. Reason:", denoise_name)
         print(e)
-        print("Error: Wiener Filtering failed.")
         exit()
     print ("====Processing Successful====")
     print("Output File: ", outfile)
@@ -46,13 +47,18 @@ elif denoise_type == 'SS':
     try:
         SpectralSubtraction(file_name)
     except Exception as e:
+        print("Error: %d failed. Reason:", denoise_name)
         print(e)
-        print("Error: Spectral Subtraction failed.")
         exit()
     print ("====Processing Successful====")
     print("Output File: ", outfile)
     pass
 elif denoise_type == 'ML':
-    denoise_name = 'Machine Learning'
-
-
+    try:
+        DeepDenoise(file_name)
+    except Exception as e:
+        print("Error: %d failed. Reason:", denoise_name)
+        print(e)
+        exit()
+    print ("====Processing Successful====")
+    
