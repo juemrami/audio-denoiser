@@ -2,7 +2,7 @@
 
 # ## DOWNLOAD THE DATASETS
 # mkdir -p dataset_zip
-# pushd dataset_zip
+pushd dataset_zip
 
 # # TRAINING ASC DATASET
 # for i in `seq 1 8`; 
@@ -11,9 +11,9 @@
 #         wget https://zenodo.org/record/45739/files/TUT-acoustic-scenes-2016-development.audio.$i.zip
 #     fi
 # done 
-# if [ ! -f TUT-acoustic-scenes-2016-development.meta.zip ]; then
-#     wget https://zenodo.org/record/45739/files/TUT-acoustic-scenes-2016-development.meta.zip
-# fi
+if [ ! -f TUT-acoustic-scenes-2016-development.meta.zip ]; then
+    wget https://zenodo.org/record/45739/files/TUT-acoustic-scenes-2016-development.meta.zip
+fi
 
 # # TESTING ASC DATASET
 # for i in `seq 1 3`; 
@@ -31,31 +31,33 @@
 #     wget https://archive.org/download/chime-home/chime_home.tar.gz
 # fi
 
-# popd
+popd
 
 ## INFLATE DATA
 
-# ASC DATA
-mkdir -p asc_tmp
-pushd asc_tmp
-# ASC TRAINING
-for i in `seq 1 8`;
-do
-    unzip -q -j ../dataset_zip/TUT-acoustic-scenes-2016-development.audio.$i.zip -d trainset
-done
-unzip -q -p ../dataset_zip/TUT-acoustic-scenes-2016-development.meta.zip TUT-acoustic-scenes-2016-development/meta.txt > trainset/meta.txt
+# # ASC DATA
+# mkdir -p asc_tmp
+# pushd asc_tmp
+# # ASC TRAINING
+# for i in `seq 1 8`;
+# do
+#     unzip -q -j ../dataset_zip/TUT-acoustic-scenes-2016-development.audio.$i.zip -d trainset
+# done
+# unzip -q -p ../dataset_zip/TUT-acoustic-scenes-2016-development.meta.zip TUT-acoustic-scenes-2016-development/meta.txt > trainset/meta.txt
 
-# ASC TESTING
-for i in `seq 1 3`;
-do
-    unzip -q -j ../dataset_zip/TUT-acoustic-scenes-2016-evaluation.audio.$i.zip -d valset
-done
-unzip -q -p ../dataset_zip/TUT-acoustic-scenes-2016-evaluation.meta.zip TUT-acoustic-scenes-2016-evaluation/meta.txt > valset/meta.txt
+# # ASC TESTING
+# for i in `seq 1 3`;
+# do
+#     unzip -q -j ../dataset_zip/TUT-acoustic-scenes-2016-evaluation.audio.$i.zip -d valset
+# done
+# unzip -q -p ../dataset_zip/TUT-acoustic-scenes-2016-evaluation.meta.zip TUT-acoustic-scenes-2016-evaluation/meta.txt > valset/meta.txt
 
-popd
+# popd
 
 # DAT DATA
 tar -xzf dataset_zip/chime_home.tar.gz -C ./
+
+
 
 ## RESAMPLE
 mkdir -p dataset/asc
@@ -84,9 +86,9 @@ done
 cp "development_chunks_refined.csv" "../dataset/dat/development_chunks_refined.csv"
 cp "evaluation_chunks_refined.csv" "../dataset/dat/evaluation_chunks_refined.csv"
 popd
-
+# sox "a129_30_60.wav" -e float -b 32 "a129_30_60_rs.wav" rate -v -I 16000
 # REMOVE TMP DATA
-rm -r asc_tmp
-rm -r chime_home
+# rm -r asc_tmp
+# rm -r chime_home
 
 

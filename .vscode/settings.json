@@ -18,6 +18,7 @@
         "cnnhistory",
         "Convolutional",
         "crossentropy",
+        "Denoising",
         "dtype",
         "FCNN",
         "Germain",

@@ -10,3 +10,4 @@ data/*.npy
 input_ml_denoised.wav
 input_ss_denoised.wav
 input_wf_denoised.wav
+*.7z
