@@ -1,2 +1,2 @@
-model_checkpoint_path: "MSE2_FCNN_AN.model"
-all_model_checkpoint_paths: "MSE2_FCNN_AN.model"
+model_checkpoint_path: "MSE_L7C16FCNN_AN.model"
+all_model_checkpoint_paths: "MSE_L7C16FCNN_AN.model"
